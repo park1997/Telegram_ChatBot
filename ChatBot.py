@@ -42,6 +42,7 @@ def start(update, context):
         , InlineKeyboardButton( '화공생명공학과', callback_data='cbe' )
     ],[
         InlineKeyboardButton( '건축학과', callback_data='architec' )
+        ,InlineKeyboardButton('추가 기능', callback_data="function")
     ]
      ,[InlineKeyboardButton( '취소', callback_data='cancel' )
     ]]
@@ -104,6 +105,9 @@ def major(update, context):
     elif data == 'architec':
         context.bot.send_message(chat_id=update.effective_chat.id,
          text ='1. 건축학과 이수체계도 -> /architec_toothwatermap\n2. 선 이수과목 조회\n3. 건축학과 커리어넷 학과정보 -> /architec_career\n4. 학과 공지사항 -> /architec_ballground' )
+    elif data == "function" :
+        context.bot.send_message(chat_id=update.effective_chat.id,
+        text="1. 일반공지 -> /normal_ballground\n")
 
 
 #이수체계도 함수들
@@ -332,6 +336,34 @@ def architec_ballground(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id,
      text = '건축공학과 홈페이지는 -> '+architec_url+' 입니다.')
 
+#동국대학교 공지사항 crawling
+def normal_ballground(update,context):
+    print("normal_ballground")
+    normal_url="https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3646&id=kr_010802000000"
+    normal_res=requests.get(normal_url,verify=False)
+    normal_res.raise_for_status()
+    normal_soup=BeautifulSoup(normal_res.text,'lxml')
+    #normal_info=normal_soup.find_all(attrs={"class":"title"})
+    normal_info=normal_soup.find_all(attrs={"class":"title"})
+    normal_info_ballground_str=[]
+    normal_info_str=[]
+    for i in normal_info:
+        normal_info_ballground_str.append(i.get_text().replace('\n',"").replace('\n',""))
+    del normal_info_ballground_str[0]
+    normal_info_str=normal_info_ballground_str[normal_info_ballground_str.index(normal_info_ballground_str[0],1,len(normal_info_ballground_str)):-1]
+    normal_info_ballground_str=normal_info_ballground_str[0:normal_info_ballground_str.index(normal_info_ballground_str[0],1,len(normal_info_ballground_str))-1]
+    ballground="공지\n\n"
+    not_ballground="최신글\n\n"
+    for i in normal_info_str:
+        ballground+=i+"\n"
+    for j in normal_info_ballground_str:
+        not_ballground+=j+"\n"
+    context.bot.send_message(chat_id=update.effective_chat.id,
+     text = ballground+"\n"+not_ballground)
+    context.bot.send_message(chat_id=update.effective_chat.id,
+      text = "일반공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3646&id=kr_010802000000")
+
+
 #text를 읽는 함수 구분!
 def ise_mc_the_max_1(update,context):
     update.message.reply_text("과목명을 입력하세요.")
@@ -414,6 +446,8 @@ ice_ballground_handler=CommandHandler('ice_ballground', ice_ballground)
 cse_ballground_handler=CommandHandler('cse_ballground', cse_ballground)
 cbe_ballground_handler=CommandHandler('cbe_ballground', cbe_ballground)
 architec_ballground_handler=CommandHandler('architec_ballground', architec_ballground)
+#동국대 전체공지사항
+normal_ballground_handler=CommandHandler('normal_ballground', normal_ballground)
 
 
 
@@ -447,7 +481,7 @@ dispatcher.add_handler(ice_career_handler)
 dispatcher.add_handler(cse_career_handler)
 dispatcher.add_handler(cbe_career_handler)
 dispatcher.add_handler(architec_career_handler)
-#공지사항 crawling dispatcher
+#학과 공지사항 crawling dispatcher
 dispatcher.add_handler(ise_ballground_handler)
 dispatcher.add_handler(cee_ballground_handler)
 dispatcher.add_handler(gunchuk_ballground_handler)
@@ -459,27 +493,19 @@ dispatcher.add_handler(ice_ballground_handler)
 dispatcher.add_handler(cse_ballground_handler)
 dispatcher.add_handler(cbe_ballground_handler)
 dispatcher.add_handler(architec_ballground_handler)
-
-
-
-
+#동국대학교 공자사항 crawling dispatcher
+dispatcher.add_handler(normal_ballground_handler)
 
 
 #판다스로 선이수 MessageHandler(MessageHandler는 에코 이므로 맨위에 작성하면 맨위에서 상속 될수 밖에없다)
 #따라서 맨 하위에 놔서 어떠한 명령어도 없을 경우에 message_handler를 실행한다.
 ise_mc_the_max_1_handler=CommandHandler('ise_mc_the_max_1',ise_mc_the_max_1)
 dispatcher.add_handler(ise_mc_the_max_1_handler)
-
-
 #졸업요건 MessageHandler
 ise_calculate_1_handler=CommandHandler('ise_calculate_1',ise_calculate_1)
 dispatcher.add_handler(ise_calculate_1_handler)
-
-
 ise_mc_the_max_handler = MessageHandler(Filters.text,ise_mc_the_max)
 #dispatcher.add_handler(ise_mc_the_max_handler)
-
-
 ise_calculate_handler=MessageHandler(Filters.text,ise_calculate)
 #dispatcher.add_handler(ise_calculate_handler)
 
