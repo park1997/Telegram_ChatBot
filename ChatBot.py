@@ -10,6 +10,8 @@ import logging
 import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ChatAction
 import pandas as pd
+from openpyxl import load_workbook
+import xlrd
 
 #telegram.ext.Updater : 텔레그램으로부터 업데이트를 받아서 dispatcher로 전달
 #CommandHandler: 텔레그램 /start등의 Command
@@ -74,7 +76,7 @@ def major(update, context):
 
     elif data == 'ise':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 산업시스템공학과 이수체계도 -> /ise_toothwatermap\n2. 선 이수과목 조회 -> /ise_mc_the_max_1\n3. 산업공학과 커리어넷 학과정보 -> /ise_career\n4. 학과 공지사항 -> /ise_ballground\n5. 졸업요건 계산기 -> /ise_calculate_1' )
+         text ='1. 산업시스템공학과 이수체계도 -> /ise_toothwatermap\n2. 선 이수과목 조회 -> /ise_mc_the_max_1\n3. 산업공학과 커리어넷 학과정보 -> /ise_career\n4. 학과 공지사항 -> /ise_ballground\n5. 과목정보 조회 -> /ise_calculate_1' )
     elif data == 'cee':
         context.bot.send_message(chat_id=update.effective_chat.id,
          text ='1. 건설환경공학과 이수체계도 -> /cee_toothwatermap\n2. 선 이수과목 조회\n3. 환경공학과 커리어넷 학과정보 -> /cee_career\n4. 학과 공지사항 -> /cee_ballground' )
@@ -107,32 +109,32 @@ def major(update, context):
          text ='1. 건축학과 이수체계도 -> /architec_toothwatermap\n2. 선 이수과목 조회\n3. 건축학과 커리어넷 학과정보 -> /architec_career\n4. 학과 공지사항 -> /architec_ballground' )
     elif data == "function" :
         context.bot.send_message(chat_id=update.effective_chat.id,
-        text="1. 일반공지 -> /normal_ballground\n")
+        text="1. 일반공지 -> /normal_ballground\n2. 열람실 좌석수 -> /magnetic_water ")
 
 
 #이수체계도 함수들
 def ise_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\산업시스템공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/산업시스템공학과이수체계도.jpg','rb'))
 def cee_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\건설환경공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/건설환경공학과이수체계도.jpg','rb'))
 def gunchuk_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\건축공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/건축공학과이수체계도.jpg','rb'))
 def mre_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\기계로봇에너지공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/기계로봇에너지공학과이수체계도.jpg','rb'))
 def mme_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\멀티미디어공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/멀티미디어공학과이수체계도.jpg','rb'))
 def newmeterial_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\융합에너지신소재공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/융합에너지신소재공학과이수체계도.jpg','rb'))
 def eee_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\전자전기공학부이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/전자전기공학부이수체계도.jpg','rb'))
 def ice_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\정보통신공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/정보통신공학과이수체계도.jpg','rb'))
 def cse_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\컴퓨터공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/컴퓨터공학과이수체계도.jpg','rb'))
 def cbe_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\화공생명공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/화공생명공학과이수체계도.jpg','rb'))
 def architec_toothwatermap(update,context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:\Python\project\공대 이수체계도\공대 이수체계도\건축학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/건축학과이수체계도.jpg','rb'))
 
 #커리어넷 학과정보 링크주기
 def ise_career(update,context):
@@ -362,8 +364,13 @@ def normal_ballground(update,context):
      text = ballground+"\n"+not_ballground)
     context.bot.send_message(chat_id=update.effective_chat.id,
       text = "일반공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3646&id=kr_010802000000")
+#중앙도서관 열람실 좌석수 조회
+def magnetic_water(update,context):
+    pass
 
 
+
+#졸업학점 계산기
 #text를 읽는 함수 구분!
 def ise_mc_the_max_1(update,context):
     update.message.reply_text("과목명을 입력하세요.")
@@ -373,13 +380,12 @@ def ise_mc_the_max_1(update,context):
 def ise_calculate_1(update,context):
     updater.dispatcher.remove_handler(ise_mc_the_max_handler)
     updater.dispatcher.add_handler(ise_calculate_handler)
-    update.message.reply_text("계산들어갑니다.")
+    update.message.reply_text("과목명을 입력해주세요.")
     print('calculate')
-
 
 #판다스로 선 이수과목 조회하기
 def ise_mc_the_max(update,context):
-    ise_df = pd.read_csv("D:/Python/project/공대선이수/산시선이수.csv",encoding='CP949')
+    ise_df = pd.read_csv("D:/Python/Telegram_ChatBot/공대선이수/산시이수과목구분.xlsx",encoding='CP949')
     ise_df_dic={}
     k=0
     for i in ise_df['후수교과목']:
@@ -395,9 +401,46 @@ def ise_mc_the_max(update,context):
     else:
         context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은(는) 선 이수 과목이 없습니다!")
         context.bot.send_message(chat_id=update.effective_chat.id, text="과목명을 입력하세요. 처음으로 돌아가고싶다면 /start 를 누르세요.")
-#졸업요건 계산하기
+
+#졸업요건을 위해 과목 입력받는 함수
 def ise_calculate(update,context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
+    ise_df = pd.read_excel("산시이수과목구분.xlsx",sheet_name='Sheet1')
+    ise_df_선택필수 = pd.read_excel("산시이수과목구분.xlsx",sheet_name='선택필수')
+    ise_df_전공필수 = pd.read_excel("산시이수과목구분.xlsx",sheet_name='전공필수')
+    ise_df_전공전문 = pd.read_excel("산시이수과목구분.xlsx",sheet_name='전공전문')
+    ise_df_전공기초 = pd.read_excel("산시이수과목구분.xlsx",sheet_name='전공기초')
+    ise_df_MSC = pd.read_excel("산시이수과목구분.xlsx",sheet_name='MSC')
+    ise_df_기본소양 = pd.read_excel("산시이수과목구분.xlsx",sheet_name='기본소양')
+
+    ise_df_choose = list(map(str,ise_df['선택필수']))
+    ise_df_must = list(map(str,ise_df['전공필수']))
+    ise_df_pro = list(map(str,ise_df['전공전문']))
+    ise_df_base = list(map(str,ise_df['전공기초']))
+    ise_df_MSC = list(map(str,ise_df['MSC']))
+    ise_df_cow_sheep = list(map(str,ise_df['기본소양']))
+
+    print(update.message.text)
+    for_strip=update.message.text
+    for_strip=''.join(for_strip.split())
+
+    if for_strip in ise_df_choose:
+        result='선택필수'
+        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+    if for_strip in ise_df_must:
+        result='전공필수'
+        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+    if for_strip in ise_df_pro:
+        result='전공전문'
+        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+    if for_strip in ise_df_base:
+        result='전공기초'
+        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+    if for_strip in ise_df_MSC:
+        result='MSC'
+        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+    if for_strip in ise_df_cow_sheep:
+        result='기본소양'
+        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
 
 
 
@@ -448,7 +491,8 @@ cbe_ballground_handler=CommandHandler('cbe_ballground', cbe_ballground)
 architec_ballground_handler=CommandHandler('architec_ballground', architec_ballground)
 #동국대 전체공지사항
 normal_ballground_handler=CommandHandler('normal_ballground', normal_ballground)
-
+#중앙도서관 열람실 좌석수 조회
+magnetic_water_handler=CommandHandler("magnetic_water",magnetic_water)
 
 
 
@@ -493,8 +537,14 @@ dispatcher.add_handler(ice_ballground_handler)
 dispatcher.add_handler(cse_ballground_handler)
 dispatcher.add_handler(cbe_ballground_handler)
 dispatcher.add_handler(architec_ballground_handler)
-#동국대학교 공자사항 crawling dispatcher
+#동국대학교 공지사항 crawling dispatcher
 dispatcher.add_handler(normal_ballground_handler)
+#중앙도서관 열람실 좌석수 조회
+dispatcher.add_handler(magnetic_water)
+
+
+
+
 
 
 #판다스로 선이수 MessageHandler(MessageHandler는 에코 이므로 맨위에 작성하면 맨위에서 상속 될수 밖에없다)
@@ -504,6 +554,7 @@ dispatcher.add_handler(ise_mc_the_max_1_handler)
 #졸업요건 MessageHandler
 ise_calculate_1_handler=CommandHandler('ise_calculate_1',ise_calculate_1)
 dispatcher.add_handler(ise_calculate_1_handler)
+#MessageHandler
 ise_mc_the_max_handler = MessageHandler(Filters.text,ise_mc_the_max)
 #dispatcher.add_handler(ise_mc_the_max_handler)
 ise_calculate_handler=MessageHandler(Filters.text,ise_calculate)
