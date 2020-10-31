@@ -24,8 +24,6 @@ updater = Updater( token=BOT_TOKEN, use_context=True )
 dispatcher = updater.dispatcher
 
 
-
-
 def start(update, context):
     task_buttons = [[
         InlineKeyboardButton( '산업시스템공학과', callback_data='ise' )
@@ -76,7 +74,7 @@ def major(update, context):
 
     elif data == 'ise':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 산업시스템공학과 이수체계도 -> /ise_toothwatermap\n2. 선 이수과목 조회 -> /ise_mc_the_max_1\n3. 산업공학과 커리어넷 학과정보 -> /ise_career\n4. 학과 공지사항 -> /ise_ballground\n5. 과목정보 조회 -> /ise_calculate_1' )
+         text ='1. 산업시스템공학과 이수체계도 -> /ise_toothwatermap\n2. 선 이수과목 조회 -> /ise_mc_the_max_1\n3. 산업공학과 커리어넷 학과정보 -> /ise_career\n4. 학과 공지사항 -> /ise_ballground\n5. 과목정보 조회 -> /ise_calculate_1\n6. 졸업학점 계산기 -> /ise_graduate_1' )
     elif data == 'cee':
         context.bot.send_message(chat_id=update.effective_chat.id,
          text ='1. 건설환경공학과 이수체계도 -> /cee_toothwatermap\n2. 선 이수과목 조회\n3. 환경공학과 커리어넷 학과정보 -> /cee_career\n4. 학과 공지사항 -> /cee_ballground' )
@@ -109,7 +107,7 @@ def major(update, context):
          text ='1. 건축학과 이수체계도 -> /architec_toothwatermap\n2. 선 이수과목 조회\n3. 건축학과 커리어넷 학과정보 -> /architec_career\n4. 학과 공지사항 -> /architec_ballground' )
     elif data == "function" :
         context.bot.send_message(chat_id=update.effective_chat.id,
-        text="1. 일반공지 -> /normal_ballground\n2. 열람실 좌석수 -> /magnetic_water ")
+        text="1. 일반공지 -> /normal_ballground\n")
 
 
 #이수체계도 함수들
@@ -354,8 +352,8 @@ def normal_ballground(update,context):
     del normal_info_ballground_str[0]
     normal_info_str=normal_info_ballground_str[normal_info_ballground_str.index(normal_info_ballground_str[0],1,len(normal_info_ballground_str)):-1]
     normal_info_ballground_str=normal_info_ballground_str[0:normal_info_ballground_str.index(normal_info_ballground_str[0],1,len(normal_info_ballground_str))-1]
-    ballground="공지\n\n"
-    not_ballground="최신글\n\n"
+    ballground="< 공지 >\n\n"
+    not_ballground="< 최신글 >\n\n"
     for i in normal_info_str:
         ballground+=i+"\n"
     for j in normal_info_ballground_str:
@@ -364,9 +362,6 @@ def normal_ballground(update,context):
      text = ballground+"\n"+not_ballground)
     context.bot.send_message(chat_id=update.effective_chat.id,
       text = "일반공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3646&id=kr_010802000000")
-#중앙도서관 열람실 좌석수 조회
-def magnetic_water(update,context):
-    pass
 
 
 
@@ -375,13 +370,21 @@ def magnetic_water(update,context):
 def ise_mc_the_max_1(update,context):
     update.message.reply_text("과목명을 입력하세요.")
     updater.dispatcher.remove_handler(ise_calculate_handler)
+    updater.dispatcher.remove_handler(ise_graduate)
     dispatcher.add_handler(ise_mc_the_max_handler)
     print("ise_mc_the_max_handler")
 def ise_calculate_1(update,context):
     updater.dispatcher.remove_handler(ise_mc_the_max_handler)
+    updater.dispatcher.remove_handler(ise_graduate_1)
     updater.dispatcher.add_handler(ise_calculate_handler)
     update.message.reply_text("과목명을 입력해주세요.")
     print('calculate')
+def ise_graduate_1(update,context):
+    updater.dispatcher.remove_handler(ise_mc_the_max_handler)
+    updater.dispatcher.remove_handler(ise_calculate_handler)
+    updater.dispatcher.add_handler(ise_graduate_handler)
+    context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n연계/복수전공명(단일전공이면 X);수강한과목명1,...\nEx)\n융합소프트웨어;인간공학;응용통계학;자아와명상1')
+
 
 #판다스로 선 이수과목 조회하기
 def ise_mc_the_max(update,context):
@@ -402,7 +405,7 @@ def ise_mc_the_max(update,context):
         context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은(는) 선 이수 과목이 없습니다!")
         context.bot.send_message(chat_id=update.effective_chat.id, text="과목명을 입력하세요. 처음으로 돌아가고싶다면 /start 를 누르세요.")
 
-#졸업요건을 위해 과목 입력받는 함수
+#과목 정보 조회하기
 def ise_calculate(update,context):
     ise_df = pd.read_excel("산시이수과목구분.xlsx",sheet_name='Sheet1')
     ise_df_선택필수 = pd.read_excel("산시이수과목구분.xlsx",sheet_name='선택필수')
@@ -441,12 +444,119 @@ def ise_calculate(update,context):
     if for_strip in ise_df_cow_sheep:
         result='기본소양'
         context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+#졸업학점 계산하기
+def ise_graduate(update,context):
+
+    print(update.message.text)
+    for_strip=update.message.text
+    for_strip_list=list(map(str,for_strip.split(';')))
+    print(for_strip_list)
+    df = pd.read_excel('졸업요건_산시.xlsx')
+
+    산업시스템공학과선택필수=list(map(str,df['산업시스템공학과선택필수']))
+    산업시스템공학과선택필수학점=0
+    산업시스템공학과전공필수=list(map(str,df['산업시스템공학과전공필수']))
+    산업시스템공학과전공필수학점=0
+    산업시스템공학과전공기초=list(map(str,df['산업시스템공학과전공기초']))
+    산업시스템공학과전공기초학점=0
+    산업시스템공학과전공전문=list(map(str,df['산업시스템공학과전공전문']))
+    산업시스템공학과전공전문학점=0
+    산업시스템공학과MSC=list(map(str,df['산업시스템공학과MSC']))
+    산업시스템공학과MSC학점=0
+    산업시스템공학과기본소양=list(map(str,df['산업시스템공학과기본소양']))
+    산업시스템공학과기본소양학점=0
+    융합소프트웨어전공필수=list(map(str,df['융합소프트웨어전공필수']))
+    융합소프트웨어전공필수학점=0
+    융합소프트웨어전공선택=list(map(str,df['융합소프트웨어전공선택']))
+    융합소프트웨어전공선택학점=0
+    디자인공학전공기초=list(map(str,df['디자인공학전공기초']))
+    디자인공학전공기초학점=0
+    디자인공학전공전문=list(map(str,df['디자인공학전공전문']))
+    디자인공학전공전문학점=0
+    건설정보소프트웨어필수=list(map(str,df['건설정보소프트웨어필수']))
+    건설정보소프트웨어필수학점=0
+    건설정보전공선택=list(map(str,df['건설정보전공선택']))
+    건설정보전공선택학점=0
+    로봇융합전공필수=list(map(str,df['로봇융합전공필수']))
+    로봇융합전공필수학점=0
+    로봇융합전공선택=list(map(str,df['로봇융합전공선택']))
+    로봇융합전공선택학점=0
+    로봇융합소프트웨어전필수=list(map(str,df['로봇융합소프트웨어전필수']))
+    로봇융합소프트웨어전학점=0
+    로봇융합소프트웨어선택=list(map(str,df['로봇융합소프트웨어선택']))
+    로봇융합소프트웨어선택학점=0
+    문화예술전공필수=list(map(str,df['문화예술전공필수']))
+    문화예술전공필수학점=0
+    문화예술전공선택=list(map(str,df['문화예술전공선택']))
+    문화예술전공선택학점=0
+    문화예술소프트웨어선택=list(map(str,df['문화예술소프트웨어선택']))
+    문화예술소프트웨어선택학점=0
+    범죄수사전공필수=list(map(str,df['범죄수사전공필수']))
+    범죄수사전공필수학점=0
+    범죄수사전공선택=list(map(str,df['범죄수사전공선택']))
+    범죄수사전공선택학점=0
+    범죄수사전공선택필수=list(map(str,df['범죄수사전공선택필수']))
+    범죄수사전공선택필수학점=0
+    범죄수사소프트웨어선택=list(map(str,df['범죄수사소프트웨어선택']))
+    범죄수사소프트웨어선택학점=0
+    산업정보전공선택=list(map(str,df['산업정보전공선택']))
+    산업정보전공선택학점=0
+    산업정보소프트웨어필수=list(map(str,df['산업정보소프트웨어필수']))
+    산업정보소프트웨어필수학점=0
+    산업정보소프트웨어선택=list(map(str,df['산업정보소프트웨어선택']))
+    산업정보소프트웨어선택학점=0
+    산업정보전공필수=list(map(str,df['산업정보전공필수']))
+    산업정보전공필수학점=0
+    산업정보전공선택=list(map(str,df['산업정보전공선택']))
+    산업정보전공선택학점=0
+    산업정보소프트웨어필수=list(map(str,df['산업정보소프트웨어필수']))
+    산업정보소프트웨어필수학점=0
+    산업정보소프트웨어선택=list(map(str,df['산업정보소프트웨어선택']))
+    산업정보소프트웨어선택학점=0
+
+    if for_strip_list[0]=='융합소프트웨어':
+        for i in for_strip_list:
+            if i in 산업시스템공학과선택필수:
+                산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
+            if i in 산업시스템공학과전공필수:
+                산업시스템공학과전공필수학점+=int(df[['산업시스템공학과전공필수학점']].iloc[산업시스템공학과전공필수.index(i)])
+            if i in 산업시스템공학과전공기초:
+                산업시스템공학과전공기초학점+=int(df[['산업시스템공학과전공기초학점']].iloc[산업시스템공학과전공기초.index(i)])
+            if i in 산업시스템공학과전공전문:
+                산업시스템공학과전공전문학점+=int(df[['산업시스템공학과전공전문학점']].iloc[산업시스템공학과전공전문.index(i)])
+            if i in 산업시스템공학과MSC:
+                산업시스템공학과MSC학점+=int(df[['산업시스템공학과MSC학점']].iloc[산업시스템공학과MSC.index(i)])
+            if i in 산업시스템공학과기본소양:
+                산업시스템공학과기본소양학점+=int(df[['산업시스템공학과기본소양학점']].iloc[산업시스템공학과기본소양.index(i)])
+            if i in 융합소프트웨어전공필수:
+                융합소프트웨어전공필수학점+=int(df[['융합소프트웨어전공필수학점']].iloc[융합소프트웨어전공필수.index(i)])
+            if i in 융합소프트웨어전공선택:
+                융합소프트웨어전공선택학점+=int(df[['융합소프트웨어전공선택학점']].iloc[융합소프트웨어전공선택.index(i)])
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/??')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/??')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과전공기초 : '+str(산업시스템공학과전공기초학점)+'/??')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/??')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과MSC : '+str(산업시스템공학과MSC학점)+'/??')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과기본소양 : '+str(산업시스템공학과기본소양학점)+'/??')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='융합소프트웨어전공필수 : '+str(융합소프트웨어전공필수학점)+'/??')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='융합소프트웨어전공선택 : '+str(융합소프트웨어전공선택학점)+'/??')
 
 
 
-
-
-
+    elif for_strip_list[0]=='디자인공학':
+        print(4)
+    elif for_strip_list[0]=='건설정보소프트웨어':
+        print(4)
+    elif for_strip_list[0]=='로봇융합소프트웨어':
+        print(4)
+    elif for_strip_list[0]=='문화예술소프트웨어':
+        print(4)
+    elif for_strip_list[0]=='범죄수사소프트웨어':
+        print(4)
+    elif for_strip_list[0]=='산업정보소프트웨어':
+        print(4)
+    elif for_strip_list[0]=='디자인공학':
+        print(4)
 
 
 # 명령어  /start 정의 CommandHandler
@@ -491,10 +601,6 @@ cbe_ballground_handler=CommandHandler('cbe_ballground', cbe_ballground)
 architec_ballground_handler=CommandHandler('architec_ballground', architec_ballground)
 #동국대 전체공지사항
 normal_ballground_handler=CommandHandler('normal_ballground', normal_ballground)
-#중앙도서관 열람실 좌석수 조회
-magnetic_water_handler=CommandHandler("magnetic_water",magnetic_water)
-
-
 
 
 # /start dispatcher
@@ -539,11 +645,6 @@ dispatcher.add_handler(cbe_ballground_handler)
 dispatcher.add_handler(architec_ballground_handler)
 #동국대학교 공지사항 crawling dispatcher
 dispatcher.add_handler(normal_ballground_handler)
-#중앙도서관 열람실 좌석수 조회
-dispatcher.add_handler(magnetic_water)
-
-
-
 
 
 
@@ -554,11 +655,15 @@ dispatcher.add_handler(ise_mc_the_max_1_handler)
 #졸업요건 MessageHandler
 ise_calculate_1_handler=CommandHandler('ise_calculate_1',ise_calculate_1)
 dispatcher.add_handler(ise_calculate_1_handler)
+ise_graduate_1_handler=CommandHandler("ise_graduate_1",ise_graduate_1)
+dispatcher.add_handler(ise_graduate_1_handler)
 #MessageHandler
 ise_mc_the_max_handler = MessageHandler(Filters.text,ise_mc_the_max)
 #dispatcher.add_handler(ise_mc_the_max_handler)
 ise_calculate_handler=MessageHandler(Filters.text,ise_calculate)
 #dispatcher.add_handler(ise_calculate_handler)
+ise_graduate_handler=MessageHandler(Filters.text,ise_graduate)
+#dispatcher.add_handler(ise_graduate_handler)
 
 print('end')
 #주기적으로 텔레그램 접속 새로운메세지가 있으면 받아온다.
