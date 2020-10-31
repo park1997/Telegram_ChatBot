@@ -74,37 +74,37 @@ def major(update, context):
 
     elif data == 'ise':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 산업시스템공학과 이수체계도 -> /ise_toothwatermap\n2. 선 이수과목 조회 -> /ise_mc_the_max_1\n3. 산업공학과 커리어넷 학과정보 -> /ise_career\n4. 학과 공지사항 -> /ise_ballground\n5. 과목정보 조회 -> /ise_calculate_1\n6. 졸업학점 계산기 -> /ise_graduate_1' )
+         text ='1. 산업시스템공학과 이수체계도 -> /ise_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 산업공학과 커리어넷 학과정보 -> /ise_career\n4. 학과 공지사항 -> /ise_ballground\n5. 과목정보 조회 -> /ise_info_1\n6. 졸업학점 계산기 -> /ise_graduate_1' )
     elif data == 'cee':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 건설환경공학과 이수체계도 -> /cee_toothwatermap\n2. 선 이수과목 조회\n3. 환경공학과 커리어넷 학과정보 -> /cee_career\n4. 학과 공지사항 -> /cee_ballground' )
+         text ='1. 건설환경공학과 이수체계도 -> /cee_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 환경공학과 커리어넷 학과정보 -> /cee_career\n4. 학과 공지사항 -> /cee_ballground' )
     elif data == 'gunchuk':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 건축공학과 이수체계도 -> /gunchuk_toothwatermap\n2. 선 이수과목 조회\n3. 건축공학과 커리어넷 학과정보 -> /gunchuk_career\n4. 학과 공지사항 -> /gunchuk_ballground' )
+         text ='1. 건축공학과 이수체계도 -> /gunchuk_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 건축공학과 커리어넷 학과정보 -> /gunchuk_career\n4. 학과 공지사항 -> /gunchuk_ballground' )
     elif data == 'mre':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 기계로봇에너지공학과 이수체계도 -> /mre_toothwatermap\n2. 선 이수과목 조회\n3. 기계공학과 커리어넷 학과정보 -> /mre_career\n4. 학과 공지사항 -> /mre_ballground' )
+         text ='1. 기계로봇에너지공학과 이수체계도 -> /mre_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 기계공학과 커리어넷 학과정보 -> /mre_career\n4. 학과 공지사항 -> /mre_ballground' )
     elif data == 'mme':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 멀티미디어공학과 이수체계도 -> /mme_toothwatermap\n2. 선 이수과목 조회\n3. 멀티미디어학과 커리어넷 학과정보 -> /mme_career\n4. 학과 공지사항 -> /mme_ballground' )
+         text ='1. 멀티미디어공학과 이수체계도 -> /mme_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 멀티미디어학과 커리어넷 학과정보 -> /mme_career\n4. 학과 공지사항 -> /mme_ballground' )
     elif data == 'newmeterial':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 융합에너지신소재공학과 이수체계도 -> /newmeterial_toothwatermap\n2. 선 이수과목 조회\n3. 신소재공학과 커리어넷 학과정보 -> /newmeterial_career\n4. 학과 공지사항 -> /newmeterial_ballground' )
+         text ='1. 융합에너지신소재공학과 이수체계도 -> /newmeterial_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 신소재공학과 커리어넷 학과정보 -> /newmeterial_career\n4. 학과 공지사항 -> /newmeterial_ballground' )
     elif data == 'eee':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 전자전기공학부 이수체계도 -> /eee_toothwatermap\n2. 선 이수과목 조회\n3. 전기전자공학과 커리어넷 학과정보 -> /eee_career\n4. 학과 공지사항 -> /eee_ballground' )
+         text ='1. 전자전기공학부 이수체계도 -> /eee_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 전기전자공학과 커리어넷 학과정보 -> /eee_career\n4. 학과 공지사항 -> /eee_ballground' )
     elif data == 'ice':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 정보통신공학과 이수체계도 -> /ice_toothwatermap\n2. 선 이수과목 조회\n3. 정보통신공학과 커리어넷 학과정보 ->  /ice_career\n4. 학과 공지사항 -> /ice_ballground' )
+         text ='1. 정보통신공학과 이수체계도 -> /ice_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 정보통신공학과 커리어넷 학과정보 ->  /ice_career\n4. 학과 공지사항 -> /ice_ballground' )
     elif data == 'cse':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 컴퓨터공학과 이수체계도 -> /cse_toothwatermap\n2. 선 이수과목 조회\n3. 컴퓨터공학과 커리어넷 학과정보 -> /cse_career\n4. 학과 공지사항 -> /cse_ballground' )
+         text ='1. 컴퓨터공학과 이수체계도 -> /cse_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 컴퓨터공학과 커리어넷 학과정보 -> /cse_career\n4. 학과 공지사항 -> /cse_ballground' )
     elif data == 'cbe':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 화공생명공학과 이수체계도 -> /cbe_toothwatermap\n2. 선 이수과목 조회\n3. 화학공학과 커리어넷 학과정보 -> /cbe_career\n4. 학과 공지사항 -> /cbe_ballground' )
+         text ='1. 화공생명공학과 이수체계도 -> /cbe_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 화학공학과 커리어넷 학과정보 -> /cbe_career\n4. 학과 공지사항 -> /cbe_ballground' )
     elif data == 'architec':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 건축학과 이수체계도 -> /architec_toothwatermap\n2. 선 이수과목 조회\n3. 건축학과 커리어넷 학과정보 -> /architec_career\n4. 학과 공지사항 -> /architec_ballground' )
+         text ='1. 건축학과 이수체계도 -> /architec_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 건축학과 커리어넷 학과정보 -> /architec_career\n4. 학과 공지사항 -> /architec_ballground' )
     elif data == "function" :
         context.bot.send_message(chat_id=update.effective_chat.id,
         text="1. 일반공지 -> /normal_ballground\n")
@@ -365,48 +365,102 @@ def normal_ballground(update,context):
 
 
 
-#졸업학점 계산기
+
 #text를 읽는 함수 구분!
-def ise_mc_the_max_1(update,context):
+#공대선이수
+def mc_the_max_1(update,context):
     update.message.reply_text("과목명을 입력하세요.")
-    updater.dispatcher.remove_handler(ise_calculate_handler)
+    updater.dispatcher.remove_handler(ise_info_handler)
     updater.dispatcher.remove_handler(ise_graduate)
-    dispatcher.add_handler(ise_mc_the_max_handler)
-    print("ise_mc_the_max_handler")
-def ise_calculate_1(update,context):
-    updater.dispatcher.remove_handler(ise_mc_the_max_handler)
+    updater.dispatcher.add_handler(mc_the_max_handler)
+    print("mc_the_max_handler")
+
+#과목정보 조회
+def ise_info_1(update,context):
+    updater.dispatcher.remove_handler(mc_the_max_handler)
     updater.dispatcher.remove_handler(ise_graduate_1)
-    updater.dispatcher.add_handler(ise_calculate_handler)
+    updater.dispatcher.add_handler(ise_info_handler)
     update.message.reply_text("과목명을 입력해주세요.")
-    print('calculate')
+    print('info')
+
+#졸업학점 계산기
 def ise_graduate_1(update,context):
-    updater.dispatcher.remove_handler(ise_mc_the_max_handler)
-    updater.dispatcher.remove_handler(ise_calculate_handler)
+    updater.dispatcher.remove_handler(mc_the_max_handler)
+    updater.dispatcher.remove_handler(ise_info_handler)
     updater.dispatcher.add_handler(ise_graduate_handler)
-    context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n연계/복수전공명(단일전공이면 X);수강한과목명1,...\nEx)\n융합소프트웨어;인간공학;응용통계학;자아와명상1')
+    context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n\nEX1) 단일전공인 경우(";"로 구분하여 수강한 과목 입력)\n인간공학;응용통계학;자아와명상1\n\nEX2) 연계전공인 경우(";" 로 구분하여 연계전공과 과목 입력)\n융합소프트웨어;인간공학;응용통계학;자아와명상1')
 
 
 #판다스로 선 이수과목 조회하기
-def ise_mc_the_max(update,context):
-    ise_df = pd.read_csv("D:/Python/Telegram_ChatBot/공대선이수/산시이수과목구분.xlsx",encoding='CP949')
-    ise_df_dic={}
+def mc_the_max(update,context):
+    ise_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/산시선이수.xlsx")
+    cee_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/건설환경공학선이수.xlsx")
+    mre_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/기계공학선이수.xlsx")
+    mme_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/멀티미디어선이수.xlsx")
+    ice_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/정보통신공학선이수.xlsx")
+    cse_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/컴퓨터공학선이수.xlsx")
+    cbe_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/화생공선이수.xlsx")
+    eee_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/전자전기공학선이수.xlsx")
+    gunchuk_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/건축공학선이수.xlsx")
+    architec_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/건축학선이수.xlsx")
+    newmeterial_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/융에신선이수.xlsx")
+    df_dic={}
     k=0
     for i in ise_df['후수교과목']:
-        ise_df_dic[i]=ise_df['선수교과목'][k]
+        df_dic[i]=ise_df['선수교과목'][k]
+        k+=1
+    k=0
+    for i in cee_df["후수교과목"]:
+        df_dic[i]=cee_df['선수교과목'][k]
+        k+=1
+    k=0
+    for i in mre_df["후수교과목"]:
+        df_dic[i]=mre_df["선수교과목"][k]
+        k+=1
+    k=0
+    for i in mme_df["후수교과목"]:
+        df_dic[i]=mme_df["선수교과목"][k]
+        k+=1
+    k=0
+    for i in ice_df["후수교과목"]:
+        df_dic[i]=ice_df["선수교과목"][k]
+        k+=1
+    k=0
+    for i in cse_df["후수교과목"]:
+        df_dic[i]=cse_df["선수교과목"][k]
+        k+=1
+    k=0
+    for i in cbe_df["후수교과목"]:
+        df_dic[i]=cbe_df["선수교과목"][k]
+        k+=1
+    k=0
+    for i in gunchuk_df["후수교과목"]:
+        df_dic[i]=gunchuk_df["선수교과목"][k]
+        k+=1
+    k=0
+    for i in architec_df["후수교과목"]:
+        df_dic[i]=architec_df["선수교과목"][k]
+        k+=1
+    k=0
+    for i in eee_df["후수교과목"]:
+        df_dic[i]=eee_df["선수교과목"][k]
+        k+=1
+    k=0
+    for i in newmeterial_df["후수교과목"]:
+        df_dic[i]=newmeterial_df["선수교과목"][k]
         k+=1
     print(update.message.text)
     for_strip=update.message.text
     for_strip=''.join(for_strip.split())
-    if for_strip in ise_df_dic:
-        result=ise_df_dic[for_strip]
+    if for_strip in df_dic:
+        result=df_dic[for_strip]
         context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 의 선 이수 과목은 \'"+result+"\' 입니다.")
         context.bot.send_message(chat_id=update.effective_chat.id, text="과목명을 입력하세요. 처음으로 돌아가고싶다면 /start 를 누르세요.")
     else:
         context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은(는) 선 이수 과목이 없습니다!")
         context.bot.send_message(chat_id=update.effective_chat.id, text="과목명을 입력하세요. 처음으로 돌아가고싶다면 /start 를 누르세요.")
-
 #과목 정보 조회하기
-def ise_calculate(update,context):
+def ise_info(update,context):
     ise_df = pd.read_excel("산시이수과목구분.xlsx",sheet_name='Sheet1')
     ise_df_선택필수 = pd.read_excel("산시이수과목구분.xlsx",sheet_name='선택필수')
     ise_df_전공필수 = pd.read_excel("산시이수과목구분.xlsx",sheet_name='전공필수')
@@ -650,20 +704,23 @@ dispatcher.add_handler(normal_ballground_handler)
 
 #판다스로 선이수 MessageHandler(MessageHandler는 에코 이므로 맨위에 작성하면 맨위에서 상속 될수 밖에없다)
 #따라서 맨 하위에 놔서 어떠한 명령어도 없을 경우에 message_handler를 실행한다.
-ise_mc_the_max_1_handler=CommandHandler('ise_mc_the_max_1',ise_mc_the_max_1)
-dispatcher.add_handler(ise_mc_the_max_1_handler)
+mc_the_max_1_handler=CommandHandler('mc_the_max_1',mc_the_max_1)
+dispatcher.add_handler(mc_the_max_1_handler)
+
+
 #졸업요건 MessageHandler
-ise_calculate_1_handler=CommandHandler('ise_calculate_1',ise_calculate_1)
-dispatcher.add_handler(ise_calculate_1_handler)
+ise_info_1_handler=CommandHandler('ise_info_1',ise_info_1)
+dispatcher.add_handler(ise_info_1_handler)
 ise_graduate_1_handler=CommandHandler("ise_graduate_1",ise_graduate_1)
 dispatcher.add_handler(ise_graduate_1_handler)
-#MessageHandler
-ise_mc_the_max_handler = MessageHandler(Filters.text,ise_mc_the_max)
-#dispatcher.add_handler(ise_mc_the_max_handler)
-ise_calculate_handler=MessageHandler(Filters.text,ise_calculate)
-#dispatcher.add_handler(ise_calculate_handler)
+
+
+#MessageHandler 선이수 과목 조회하기
+mc_the_max_handler = MessageHandler(Filters.text,mc_the_max)
+
+#과목정보 조회하기
+ise_info_handler=MessageHandler(Filters.text,ise_info)
 ise_graduate_handler=MessageHandler(Filters.text,ise_graduate)
-#dispatcher.add_handler(ise_graduate_handler)
 
 print('end')
 #주기적으로 텔레그램 접속 새로운메세지가 있으면 받아온다.
