@@ -18,11 +18,9 @@ import xlrd
 #MessageHandler: 텍스트 상태 업데이트
 #CallbackQueryHandler: callback 쿼리
 
-
 BOT_TOKEN='937755335:AAHsVeoU6isCkDyPY53LFu0quZdWRf88J8Q'   #Py*R**2의 텔레그램 토큰
 updater = Updater( token=BOT_TOKEN, use_context=True )
 dispatcher = updater.dispatcher
-
 
 def start(update, context):
     task_buttons = [[
@@ -55,7 +53,6 @@ def start(update, context):
         , reply_markup=reply_markup
     )
 
-
 #callback_query된 애들 여기로 들어감
 def major(update, context):
     query = update.callback_query
@@ -68,7 +65,7 @@ def major(update, context):
     print(data)
     if data == 'cancel':
         context.bot.edit_message_text(
-            text='작업이 취소되었습니다. 다시 선택하시려면 /start 를클릭해 주세요.'
+            text='작업이 취소되었습니다. 다시 선택하시려면 /start 를 클릭해 주세요.'
             , chat_id=query.message.chat_id
             , message_id=query.message.message_id)
 
@@ -107,8 +104,7 @@ def major(update, context):
          text ='1. 건축학과 이수체계도 -> /architec_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 건축학과 커리어넷 학과정보 -> /architec_career\n4. 학과 공지사항 -> /architec_ballground' )
     elif data == "function" :
         context.bot.send_message(chat_id=update.effective_chat.id,
-        text="1. 일반공지 -> /normal_ballground\n")
-
+        text="1. 일반공지 -> /normal_ballground\n2. 학사공지 -> /haksa_ballground\n3. 입시 공지 -> /mouthpoem_ballground\n4. 장학 공지 -> /scholarship_ballground\n5. 국제 공지 -> /international_ballground\n6. 학술/행사 공지 -> /event_ballground")
 
 #이수체계도 함수들
 def ise_toothwatermap(update, context):
@@ -362,8 +358,130 @@ def normal_ballground(update,context):
      text = ballground+"\n"+not_ballground)
     context.bot.send_message(chat_id=update.effective_chat.id,
       text = "일반공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3646&id=kr_010802000000")
-
-
+def haksa_ballground(update,context):
+    print("haksa_ballground")
+    haksa_url="https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3638&id=kr_010801000000"
+    haksa_res=requests.get(haksa_url,verify=False)
+    haksa_res.raise_for_status()
+    haksa_soup=BeautifulSoup(haksa_res.text,'lxml')
+    #haksa_info=haksa_soup.find_all(attrs={"class":"title"})
+    haksa_info=haksa_soup.find_all(attrs={"class":"title"})
+    haksa_info_ballground_str=[]
+    haksa_info_str=[]
+    for i in haksa_info:
+        haksa_info_ballground_str.append(i.get_text().replace('\n',"").replace('\n',""))
+    del haksa_info_ballground_str[0]
+    haksa_info_str=haksa_info_ballground_str[haksa_info_ballground_str.index(haksa_info_ballground_str[0],1,len(haksa_info_ballground_str)):-1]
+    haksa_info_ballground_str=haksa_info_ballground_str[0:haksa_info_ballground_str.index(haksa_info_ballground_str[0],1,len(haksa_info_ballground_str))-1]
+    ballground="< 공지 >\n\n"
+    not_ballground="< 최신글 >\n\n"
+    for i in haksa_info_str:
+        ballground+=i+"\n"
+    for j in haksa_info_ballground_str:
+        not_ballground+=j+"\n"
+    context.bot.send_message(chat_id=update.effective_chat.id,
+     text = ballground+"\n"+not_ballground)
+    context.bot.send_message(chat_id=update.effective_chat.id,
+      text = "학사공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3638&id=kr_010801000000")
+def mouthpoem_ballground(update,context):
+    print("mouthpoem_ballground")
+    mouthpoem_url="https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3654&id=kr_010803000000"
+    mouthpoem_res=requests.get(mouthpoem_url,verify=False)
+    mouthpoem_res.raise_for_status()
+    mouthpoem_soup=BeautifulSoup(mouthpoem_res.text,'lxml')
+    #mouthpoem_info=mouthpoem_soup.find_all(attrs={"class":"title"})
+    mouthpoem_info=mouthpoem_soup.find_all(attrs={"class":"title"})
+    mouthpoem_info_ballground_str=[]
+    mouthpoem_info_str=[]
+    for i in mouthpoem_info:
+        mouthpoem_info_ballground_str.append(i.get_text().replace('\n',"").replace('\n',""))
+    del mouthpoem_info_ballground_str[0]
+    #mouthpoem_info_str=mouthpoem_info_ballground_str[mouthpoem_info_ballground_str.index(mouthpoem_info_ballground_str[0],1,len(mouthpoem_info_ballground_str)):-1]
+    #mouthpoem_info_ballground_str=mouthpoem_info_ballground_str[0:mouthpoem_info_ballground_str.index(mouthpoem_info_ballground_str[0],1,len(mouthpoem_info_ballground_str))-1]
+    ballground="< 공지 >\n\n"
+    not_ballground="< 최신글 >\n\n"
+    for i in mouthpoem_info_str:
+        ballground+=i+"\n"
+    for j in mouthpoem_info_ballground_str:
+        not_ballground+=j+"\n"
+    context.bot.send_message(chat_id=update.effective_chat.id,
+     text = ballground+"\n"+not_ballground)
+    context.bot.send_message(chat_id=update.effective_chat.id,
+      text = "입시공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3654&id=kr_010803000000")
+def scholarship_ballground(update,context):
+    print("scholarship_ballground")
+    scholarship_url="https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3662&id=kr_010804000000"
+    scholarship_res=requests.get(scholarship_url,verify=False)
+    scholarship_res.raise_for_status()
+    scholarship_soup=BeautifulSoup(scholarship_res.text,'lxml')
+    #scholarship_info=scholarship_soup.find_all(attrs={"class":"title"})
+    scholarship_info=scholarship_soup.find_all(attrs={"class":"title"})
+    scholarship_info_ballground_str=[]
+    scholarship_info_str=[]
+    for i in scholarship_info:
+        scholarship_info_ballground_str.append(i.get_text().replace('\n',"").replace('\n',""))
+    del scholarship_info_ballground_str[0]
+    scholarship_info_str=scholarship_info_ballground_str[scholarship_info_ballground_str.index(scholarship_info_ballground_str[0],1,len(scholarship_info_ballground_str)):-1]
+    scholarship_info_ballground_str=scholarship_info_ballground_str[0:scholarship_info_ballground_str.index(scholarship_info_ballground_str[0],1,len(scholarship_info_ballground_str))-1]
+    ballground="< 공지 >\n\n"
+    not_ballground="< 최신글 >\n\n"
+    for i in scholarship_info_str:
+        ballground+=i+"\n"
+    for j in scholarship_info_ballground_str:
+        not_ballground+=j+"\n"
+    context.bot.send_message(chat_id=update.effective_chat.id,
+     text = ballground+"\n"+not_ballground)
+    context.bot.send_message(chat_id=update.effective_chat.id,
+      text = "장학공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=3662&id=kr_010804000000")
+def international_ballground(update,context):
+    print("international_ballground")
+    international_url="https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=9457435&id=kr_010807000000"
+    international_res=requests.get(international_url,verify=False)
+    international_res.raise_for_status()
+    international_soup=BeautifulSoup(international_res.text,'lxml')
+    #international_info=international_soup.find_all(attrs={"class":"title"})
+    international_info=international_soup.find_all(attrs={"class":"title"})
+    international_info_ballground_str=[]
+    international_info_str=[]
+    for i in international_info:
+        international_info_ballground_str.append(i.get_text().replace('\n',"").replace('\n',""))
+    del international_info_ballground_str[0]
+    international_info_str=international_info_ballground_str[international_info_ballground_str.index(international_info_ballground_str[0],1,len(international_info_ballground_str)):-1]
+    international_info_ballground_str=international_info_ballground_str[0:international_info_ballground_str.index(international_info_ballground_str[0],1,len(international_info_ballground_str))-1]
+    ballground="< 공지 >\n\n"
+    not_ballground="< 최신글 >\n\n"
+    for i in international_info_str:
+        ballground+=i+"\n"
+    for j in international_info_ballground_str:
+        not_ballground+=j+"\n"
+    context.bot.send_message(chat_id=update.effective_chat.id,
+     text = ballground+"\n"+not_ballground)
+    context.bot.send_message(chat_id=update.effective_chat.id,
+      text = "국제공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=9457435&id=kr_010807000000")
+def event_ballground(update,context):
+    event_url="https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=11533472&id=kr_010808000000"
+    event_res=requests.get(event_url,verify=False)
+    event_res.raise_for_status()
+    event_soup=BeautifulSoup(event_res.text,'lxml')
+    #event_info=event_soup.find_all(attrs={"class":"title"})
+    event_info=event_soup.find_all(attrs={"class":"title"})
+    event_info_ballground_str=[]
+    event_info_str=[]
+    for i in event_info:
+        event_info_ballground_str.append(i.get_text().replace('\n',"").replace('\n',""))
+    del event_info_ballground_str[0]
+    event_info_str=event_info_ballground_str[event_info_ballground_str.index(event_info_ballground_str[0],1,len(event_info_ballground_str)):-1]
+    event_info_ballground_str=event_info_ballground_str[0:event_info_ballground_str.index(event_info_ballground_str[0],1,len(event_info_ballground_str))-1]
+    ballground="< 공지 >\n\n"
+    not_ballground="< 최신글 >\n\n"
+    for i in event_info_str:
+        ballground+=i+"\n"
+    for j in event_info_ballground_str:
+        not_ballground+=j+"\n"
+    context.bot.send_message(chat_id=update.effective_chat.id,
+     text = ballground+"\n"+not_ballground)
+    context.bot.send_message(chat_id=update.effective_chat.id,
+      text = "학술/행사 공지 게시판 ------> https://www.dongguk.edu/mbs/kr/jsp/board/list.jsp?boardId=11533472&id=kr_010808000000")
 
 
 #text를 읽는 함수 구분!
@@ -374,7 +492,6 @@ def mc_the_max_1(update,context):
     updater.dispatcher.remove_handler(ise_graduate)
     updater.dispatcher.add_handler(mc_the_max_handler)
     print("mc_the_max_handler")
-
 #과목정보 조회
 def ise_info_1(update,context):
     updater.dispatcher.remove_handler(mc_the_max_handler)
@@ -382,14 +499,12 @@ def ise_info_1(update,context):
     updater.dispatcher.add_handler(ise_info_handler)
     update.message.reply_text("과목명을 입력해주세요.")
     print('info')
-
 #졸업학점 계산기
 def ise_graduate_1(update,context):
     updater.dispatcher.remove_handler(mc_the_max_handler)
     updater.dispatcher.remove_handler(ise_info_handler)
     updater.dispatcher.add_handler(ise_graduate_handler)
     context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n\nEX1) 단일전공인 경우(";"로 구분하여 수강한 과목 입력)\n인간공학;응용통계학;자아와명상1\n\nEX2) 연계전공인 경우(";" 로 구분하여 연계전공과 과목 입력)\n융합소프트웨어;인간공학;응용통계학;자아와명상1')
-
 
 #판다스로 선 이수과목 조회하기
 def mc_the_max(update,context):
@@ -480,27 +595,48 @@ def ise_info(update,context):
     for_strip=update.message.text
     for_strip=''.join(for_strip.split())
 
+    printlist=[]
+    printlist_1=[]
     if for_strip in ise_df_choose:
         result='선택필수'
-        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+        printlist.append(ise_df[['선택필수학점']].iloc[ise_df_choose.index(for_strip)])
+        printlist_1.append(result)
     if for_strip in ise_df_must:
         result='전공필수'
-        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+        printlist.append(ise_df[['전공필수학점']].iloc[ise_df_must.index(for_strip)])
+
+        printlist_1.append(result)
     if for_strip in ise_df_pro:
         result='전공전문'
-        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+        printlist.append(ise_df[['전공전문학점']].iloc[ise_df_pro.index(for_strip)])
+
+        printlist_1.append(result)
     if for_strip in ise_df_base:
         result='전공기초'
-        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+        printlist.append(ise_df[['전공기초학점']].iloc[ise_df_base.index(for_strip)])
+
+        printlist_1.append(result)
     if for_strip in ise_df_MSC:
         result='MSC'
-        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+        printlist.append(ise_df[['MSC학점']].iloc[ise_df_MSC.index(for_strip)])
+
+        printlist_1.append(result)
     if for_strip in ise_df_cow_sheep:
         result='기본소양'
-        context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은('는') \'"+result+"\' 입니다.")
+        printlist.append(ise_df[['기본소양학점']].iloc[ise_df_cow_sheep.index(for_strip)])
+
+        printlist_1.append(result)
+    print(printlist)
+    result=""
+    for i in printlist_1:
+        result+=i+" "
+    if len(printlist)==0:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="\""+update.message.text+"\"  과목명을 확인후 다시 입력해 주세요.")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text+' : '+result+'\t학점 : '+str(float(printlist[0][0])))
+
 #졸업학점 계산하기
 def ise_graduate(update,context):
-
     print(update.message.text)
     for_strip=update.message.text
     for_strip_list=list(map(str,for_strip.split(';')))
@@ -614,7 +750,7 @@ def ise_graduate(update,context):
 
 
 # 명령어  /start 정의 CommandHandler
-start_handler = CommandHandler( 'start', start )
+start_handler = CommandHandler('start', start )
 # 각 학과에 조회가능한 것들이 뭐 있는지에대한 명령어들 제시하는 CallbackQueryHandler
 major_callback_handler = CallbackQueryHandler( major )
 #각 학과의 이수체계도 명령 CommandHandler
@@ -655,7 +791,11 @@ cbe_ballground_handler=CommandHandler('cbe_ballground', cbe_ballground)
 architec_ballground_handler=CommandHandler('architec_ballground', architec_ballground)
 #동국대 전체공지사항
 normal_ballground_handler=CommandHandler('normal_ballground', normal_ballground)
-
+haksa_ballground_handler=CommandHandler("haksa_ballground",haksa_ballground)
+mouthpoem_ballground_handler=CommandHandler("mouthpoem_ballground",mouthpoem_ballground)
+scholarship_ballground_handler=CommandHandler("scholarship_ballground",scholarship_ballground)
+international_ballground_handler=CommandHandler("international_ballground",international_ballground)
+event_ballground_handler=CommandHandler("event_ballground",event_ballground)
 
 # /start dispatcher
 dispatcher.add_handler( start_handler )
@@ -699,7 +839,11 @@ dispatcher.add_handler(cbe_ballground_handler)
 dispatcher.add_handler(architec_ballground_handler)
 #동국대학교 공지사항 crawling dispatcher
 dispatcher.add_handler(normal_ballground_handler)
-
+dispatcher.add_handler(haksa_ballground_handler)
+dispatcher.add_handler(mouthpoem_ballground_handler)
+dispatcher.add_handler(scholarship_ballground_handler)
+dispatcher.add_handler(international_ballground_handler)
+dispatcher.add_handler(event_ballground_handler)
 
 
 #판다스로 선이수 MessageHandler(MessageHandler는 에코 이므로 맨위에 작성하면 맨위에서 상속 될수 밖에없다)
