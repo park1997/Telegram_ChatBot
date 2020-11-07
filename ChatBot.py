@@ -33,8 +33,7 @@ def start(update, context):
         InlineKeyboardButton( '멀티미디어공학과', callback_data='mme' )
         , InlineKeyboardButton( '융합에너지신소재공학과', callback_data='newmeterial' )
     ],[
-        InlineKeyboardButton( '전자전기공학부', callback_data='e
-        ee' )
+        InlineKeyboardButton( '전자전기공학부', callback_data='eee' )
         , InlineKeyboardButton( '정보통신공학과', callback_data='ice' )
     ],[
         InlineKeyboardButton( '컴퓨터공학과', callback_data='cse' )
@@ -506,7 +505,6 @@ def ise_graduate_1(update,context):
     updater.dispatcher.add_handler(ise_graduate_handler)
     context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n\nEX1) 단일전공인 경우(";"로 구분하여 수강한 과목 입력)\n인간공학;응용통계학;자아와명상1\n\nEX2) 연계전공인 경우(";" 로 구분하여 연계전공과 과목 입력)\n융합소프트웨어;인간공학;응용통계학;자아와명상1')
     print("ise_graduate_1")
-
 #판다스로 선 이수과목 조회하기
 def mc_the_max(update,context):
     ise_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/산시선이수.xlsx")
