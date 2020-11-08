@@ -505,6 +505,7 @@ def ise_graduate_1(update,context):
     updater.dispatcher.add_handler(ise_graduate_handler)
     context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n\nEX1) 단일전공인 경우(";"로 구분하여 수강한 과목 입력)\n인간공학;응용통계학;자아와명상1\n\nEX2) 연계전공인 경우(";" 로 구분하여 연계전공과 과목 입력)\n융합소프트웨어;인간공학;응용통계학;자아와명상1')
     print("ise_graduate_1")
+
 #판다스로 선 이수과목 조회하기
 def mc_the_max(update,context):
     ise_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/산시선이수.xlsx")
@@ -573,6 +574,7 @@ def mc_the_max(update,context):
     else:
         context.bot.send_message(chat_id=update.effective_chat.id, text="\'"+update.message.text+"\' 은(는) 선 이수 과목이 없습니다!")
         context.bot.send_message(chat_id=update.effective_chat.id, text="과목명을 입력하세요. 처음으로 돌아가고싶다면 /start 를 누르세요.")
+
 #과목 정보 조회하기
 def info(update,context):
     ise_df = pd.read_excel("과목 및 학점구분.xlsx",sheet_name='Sheet1')
