@@ -71,64 +71,99 @@ def major(update, context):
 
     elif data == 'ise':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 산업시스템공학과 이수체계도 -> /ise_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 산업공학과 커리어넷 학과정보 -> /ise_career\n4. 학과 공지사항 -> /ise_ballground\n5. 과목정보 조회 -> /info_1\n6. 졸업학점 계산기 -> /ise_graduate_1' )
+         text ='1. 산업시스템공학과 이수체계도,졸업기준표\n-> /ise_toothwatermap\n2. 산업공학과 커리어넷 학과정보\n-> /ise_career\n3. 학과 공지사항\n-> /ise_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1\n6. 졸업학점 계산기\n-> /ise_graduate_1' )
     elif data == 'cee':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 건설환경공학과 이수체계도 -> /cee_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 환경공학과 커리어넷 학과정보 -> /cee_career\n4. 학과 공지사항 -> /cee_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 건설환경공학과 이수체계도\n-> /cee_toothwatermap\n2. 환경공학과 커리어넷 학과정보\n-> /cee_career\n3. 학과 공지사항\n-> /cee_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == 'gunchuk':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 건축공학과 이수체계도 -> /gunchuk_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 건축공학과 커리어넷 학과정보 -> /gunchuk_career\n4. 학과 공지사항 -> /gunchuk_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 건축공학과 이수체계도\n-> /gunchuk_toothwatermap\n2. 건축공학과 커리어넷 학과정보\n-> /gunchuk_career\n3. 학과 공지사항\n-> /gunchuk_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == 'mre':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 기계로봇에너지공학과 이수체계도 -> /mre_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 기계공학과 커리어넷 학과정보 -> /mre_career\n4. 학과 공지사항 -> /mre_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 기계로봇에너지공학과 이수체계도\n-> /mre_toothwatermap\n2. 기계공학과 커리어넷 학과정보\n-> /mre_career\n3. 학과 공지사항\n-> /mre_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == 'mme':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 멀티미디어공학과 이수체계도 -> /mme_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 멀티미디어학과 커리어넷 학과정보 -> /mme_career\n4. 학과 공지사항 -> /mme_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 멀티미디어공학과 이수체계도\n-> /mme_toothwatermap\n2. 멀티미디어학과 커리어넷 학과정보\n-> /mme_career\n3. 학과 공지사항\n-> /mme_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == 'newmeterial':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 융합에너지신소재공학과 이수체계도 -> /newmeterial_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 신소재공학과 커리어넷 학과정보 -> /newmeterial_career\n4. 학과 공지사항 -> /newmeterial_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 융합에너지신소재공학과 이수체계도\n-> /newmeterial_toothwatermap\n2. 신소재공학과 커리어넷 학과정보\n-> /newmeterial_career\n3. 학과 공지사항\n-> /newmeterial_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == 'eee':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 전자전기공학부 이수체계도 -> /eee_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 전기전자공학과 커리어넷 학과정보 -> /eee_career\n4. 학과 공지사항 -> /eee_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 전자전기공학부 이수체계도\n-> /eee_toothwatermap\n2. 전기전자공학과 커리어넷 학과정보\n-> /eee_career\n3. 학과 공지사항\n-> /eee_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == 'ice':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 정보통신공학과 이수체계도 -> /ice_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 정보통신공학과 커리어넷 학과정보 ->  /ice_career\n4. 학과 공지사항 -> /ice_ballground\n5. 과목정보 조회 -> /info_1')
+         text ='1. 정보통신공학과 이수체계도\n-> /ice_toothwatermap\n2. 정보통신공학과 커리어넷 학과정보\n->  /ice_career\n3. 학과 공지사항\n-> /ice_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1')
     elif data == 'cse':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 컴퓨터공학과 이수체계도 -> /cse_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 컴퓨터공학과 커리어넷 학과정보 -> /cse_career\n4. 학과 공지사항 -> /cse_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 컴퓨터공학과 이수체계도\n-> /cse_toothwatermap\n2. 컴퓨터공학과 커리어넷 학과정보\n-> /cse_career\n3. 학과 공지사항\n-> /cse_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == 'cbe':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 화공생명공학과 이수체계도 -> /cbe_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 화학공학과 커리어넷 학과정보 -> /cbe_career\n4. 학과 공지사항 -> /cbe_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 화공생명공학과 이수체계도\n-> /cbe_toothwatermap\n2. 화학공학과 커리어넷 학과정보\n-> /cbe_career\n3 학과 공지사항\n-> /cbe_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == 'architec':
         context.bot.send_message(chat_id=update.effective_chat.id,
-         text ='1. 건축학과 이수체계도 -> /architec_toothwatermap\n2. 선 이수과목 조회 -> /mc_the_max_1\n3. 건축학과 커리어넷 학과정보 -> /architec_career\n4. 학과 공지사항 -> /architec_ballground\n5. 과목정보 조회 -> /info_1' )
+         text ='1. 건축학과 이수체계도\n-> /architec_toothwatermap\n2. 건축학과 커리어넷 학과정보\n-> /architec_career\n3. 학과 공지사항\n-> /architec_ballground\n4. 선 이수과목 조회\n-> /mc_the_max_1\n5. 과목정보 조회\n-> /info_1' )
     elif data == "function" :
         context.bot.send_message(chat_id=update.effective_chat.id,
-        text="1. 일반공지 -> /normal_ballground\n2. 학사공지 -> /haksa_ballground\n3. 입시 공지 -> /mouthpoem_ballground\n4. 장학 공지 -> /scholarship_ballground\n5. 국제 공지 -> /international_ballground\n6. 학술/행사 공지 -> /event_ballground")
+        text="1. 일반공지\n-> /normal_ballground\n2. 학사공지\n-> /haksa_ballground\n3. 입시 공지\n-> /mouthpoem_ballground\n4. 장학 공지\n-> /scholarship_ballground\n5. 국제 공지\n-> /international_ballground\n6. 학술/행사 공지\n-> /event_ballground")
 
 #이수체계도 함수들
 def ise_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/산업시스템공학과이수체계도.jpg','rb'))
+    update.message.reply_text("↓일반과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/산시졸업기준표_일반과정.jpg','rb'))
+    update.message.reply_text("↓심화과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/산시졸업기준표_심화과정.jpg','rb'))
 def cee_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/건설환경공학과이수체계도.jpg','rb'))
+    update.message.reply_text("↓일반과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/건환졸업기준표_일반과정.jpg','rb'))
+    update.message.reply_text("↓심화과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/건환졸업기준표_심화과정.jpg','rb'))
 def gunchuk_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/건축공학과이수체계도.jpg','rb'))
+    update.message.reply_text("↓일반과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/건공졸업기준표_일반과정.jpg','rb'))
+    update.message.reply_text("↓심화과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/건공졸업기준표_심화과정.jpg','rb'))
 def mre_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/기계로봇에너지공학과이수체계도.jpg','rb'))
+    update.message.reply_text("↓일반과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/기계졸업기준표_일반과정.jpg','rb'))
+    update.message.reply_text("↓심화과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/기계졸업기준표_심화과정.jpg','rb'))
 def mme_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/멀티미디어공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/멀공졸업기준표.jpg','rb'))
 def newmeterial_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/융합에너지신소재공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/융신졸업기준표.jpg','rb'))
 def eee_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/전자전기공학부이수체계도.jpg','rb'))
+    update.message.reply_text("↓일반과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/전전졸업기준표_일반과정.jpg','rb'))
+    update.message.reply_text("↓심화과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/전전졸업기준표_심화과정.jpg','rb'))
 def ice_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/정보통신공학과이수체계도.jpg','rb'))
+    update.message.reply_text("↓일반과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/정통졸업기준표_일반과정.jpg','rb'))
+    update.message.reply_text("↓심화과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/정통졸업기준표_심화과정.jpg','rb'))
 def cse_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/컴퓨터공학과이수체계도.jpg','rb'))
+    update.message.reply_text("↓일반과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/컴공졸업기준표_일반과정.jpg','rb'))
+    update.message.reply_text("↓심화과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/컴공졸업기준표_심화과정.jpg','rb'))
 def cbe_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/화공생명공학과이수체계도.jpg','rb'))
+    update.message.reply_text("↓일반과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/화공졸업기준표_일반과정.jpg','rb'))
+    update.message.reply_text("↓심화과정↓")
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/화공졸업기준표_심화과정.jpg','rb'))
 def architec_toothwatermap(update,context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/건축학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/건축학졸업기준표.jpg','rb'))
 
 #커리어넷 학과정보 링크주기
 def ise_career(update,context):
@@ -504,6 +539,7 @@ def ise_graduate_1(update,context):
     updater.dispatcher.remove_handler(info_handler)
     updater.dispatcher.add_handler(ise_graduate_handler)
     context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n\nEX1) 단일전공인 경우(";"로 구분하여 수강한 과목 입력)\n인간공학;응용통계학;자아와명상1\n\nEX2) 연계전공인 경우(";" 로 구분하여 연계전공과 과목 입력)\n융합소프트웨어;인간공학;응용통계학;자아와명상1')
+
     print("ise_graduate_1")
 
 #판다스로 선 이수과목 조회하기
