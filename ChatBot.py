@@ -3,14 +3,10 @@ from emoji import emojize
 import requests
 from bs4 import BeautifulSoup
 import lxml
-import json
-import datetime
-import time
 import logging
 import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ChatAction
 import pandas as pd
-from openpyxl import load_workbook
 import xlrd
 
 #telegram.ext.Updater : 텔레그램으로부터 업데이트를 받아서 dispatcher로 전달
@@ -521,15 +517,15 @@ def event_ballground(update,context):
 #text를 읽는 함수 구분! MessageHandler의 삭제와 추가를 담당함
 #공대선이수
 def mc_the_max_1(update,context):
-    update.message.reply_text("과목명을 입력하세요.")
     updater.dispatcher.remove_handler(info_handler)
-    updater.dispatcher.remove_handler(ise_graduate)
+    updater.dispatcher.remove_handler(ise_graduate_handler)
     updater.dispatcher.add_handler(mc_the_max_handler)
     print("mc_the_max_handler_1")
+    update.message.reply_text("과목명을 입력하세요.")
 #과목정보 조회
 def info_1(update,context):
     updater.dispatcher.remove_handler(mc_the_max_handler)
-    updater.dispatcher.remove_handler(ise_graduate_1)
+    updater.dispatcher.remove_handler(ise_graduate_handler)
     updater.dispatcher.add_handler(info_handler)
     update.message.reply_text("과목명을 입력해주세요.")
     print('info_1')
@@ -665,6 +661,8 @@ def info(update,context):
         context.bot.send_message(chat_id=update.effective_chat.id, text="\""+update.message.text+"\"  과목명을 확인후 다시 입력해 주세요.")
     else:
         context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text+' : '+result+'\t학점 : '+str(float(printlist[0][0])))
+        if update.message.text=="머신러닝":
+            context.bot.send_message(chat_id=update.effective_chat.id, text="(정보통신공학과 에서는 \"머신러닝\"이 전공전문 입니다. )")
 
 #졸업학점 계산하기
 def ise_graduate(update,context):
@@ -935,6 +933,9 @@ def ise_graduate(update,context):
     essential_str=essential_str.replace(essential_str,essential_str[0:len(essential_str)-1])
     if len(essential_list)!=0:
         context.bot.send_message(chat_id=update.effective_chat.id, text='[필수과목] '+essential_str+'을(를) 아직 수강하지 않았습니다!')
+
+
+
 # 명령어  /start 정의 CommandHandler
 start_handler = CommandHandler('start', start )
 # 각 학과에 조회가능한 것들이 뭐 있는지에대한 명령어들 제시하는 CallbackQueryHandler
