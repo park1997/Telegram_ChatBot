@@ -671,12 +671,24 @@ def ise_graduate(update,context):
         for_strip_list[i]=''.join(for_strip_list[i].split())
     print(for_strip_list)
     df = pd.read_excel('졸업요건_산시.xlsx')
-    five_ride=""
+    five_ride=''
+    column_data=[]
+    column_data_list=[]
+    for_set=[]
+    for i in df:
+        column_data.append(list(set(list(map(str,df[i])))))
+    for i in column_data:
+        for _ in i:
+            column_data_list.append(_)
     for i in for_strip_list:
-        if i not in df:
-            five_ride+=i+","
-    five_ride=five_ride.replace(five_ride,five_ride[0:len(five_ride)-1])
+        if i not in column_data_list:
+            for_set.append(i)
+    for_set=list(set(for_set))
+    for i in for_set:
+        five_ride+=i+','
 
+
+    five_ride=five_ride.replace(five_ride,five_ride[0:len(five_ride)-1])
     산업시스템공학과선택필수=list(map(str,df['산업시스템공학과선택필수']))
     산업시스템공학과선택필수학점=0
     산업시스템공학과전공필수=list(map(str,df['산업시스템공학과전공필수']))
@@ -931,10 +943,6 @@ def ise_graduate(update,context):
                 산업시스템공학과기초교양학점+=int(df[['산업시스템공학과기초교양학점']].iloc[산업시스템공학과기초교양.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
         context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16')
-    if len(five_ride)!=0:
-        context.bot.send_message(chat_id=update.effective_chat.id, text=five_ride+'(은)는 잘못 입력된 과목 입니다.')
-
-
     essential_list=['공학경제','미적분학및연습1','미적분학및연습2','공학선형대수학']
     for _ in for_strip_list:
         if _ in essential_list:
@@ -945,6 +953,9 @@ def ise_graduate(update,context):
     essential_str=essential_str.replace(essential_str,essential_str[0:len(essential_str)-1])
     if len(essential_list)!=0:
         context.bot.send_message(chat_id=update.effective_chat.id, text='[필수과목] '+essential_str+'을(를) 아직 수강하지 않았습니다!')
+    if len(five_ride)!=0:
+        print(five_ride)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=five_ride+'(은)는 잘못 입력된 과목 입니다.')
 
 # 명령어  /start 정의 CommandHandler
 start_handler = CommandHandler('start', start )
