@@ -7,7 +7,7 @@ import logging
 import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ChatAction
 import pandas as pd
-import xlrd
+
 
 #telegram.ext.Updater : 텔레그램으로부터 업데이트를 받아서 dispatcher로 전달
 #CommandHandler: 텔레그램 /start등의 Command
@@ -534,10 +534,8 @@ def ise_graduate_1(update,context):
     updater.dispatcher.remove_handler(mc_the_max_handler)
     updater.dispatcher.remove_handler(info_handler)
     updater.dispatcher.add_handler(ise_graduate_handler)
-    context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n\nEX1) 단일전공인 경우(";"로 구분하여 수강한 과목 입력)\n인간공학;응용통계학;자아와명상1\n\nEX2) 연계전공인 경우(";" 로 구분하여 연계전공과 과목 입력)\n융합소프트웨어;인간공학;응용통계학;자아와명상1')
-
+    context.bot.send_message(chat_id=update.effective_chat.id, text='다음 양식에 맞게 수강한 과목을 입력하세요.\n\nEX1) 단일전공인 경우(";"로 구분하여 수강한 과목 입력)\n인간공학;응용통계학;자아와명상1\n\nEX2) 복수(연계)전공인 경우(";" 로 구분하여 연계전공과 과목 입력)\n융합소프트웨어;인간공학;응용통계학;자아와명상1\n\n'+'< 필 독!! >\n(현장실습, 개별연구)는 학점 계산에 포함되지 않습니다. ')
     print("ise_graduate_1")
-
 #판다스로 선 이수과목 조회하기
 def mc_the_max(update,context):
     ise_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/산시선이수.xlsx")
@@ -666,12 +664,18 @@ def info(update,context):
 
 #졸업학점 계산하기
 def ise_graduate(update,context):
-
     print(update.message.text)
     for_strip=update.message.text
     for_strip_list=list(map(str,for_strip.split(';')))
+    for i in range(len(for_strip_list)):
+        for_strip_list[i]=''.join(for_strip_list[i].split())
     print(for_strip_list)
     df = pd.read_excel('졸업요건_산시.xlsx')
+    five_ride=""
+    for i in for_strip_list:
+        if i not in df:
+            five_ride+=i+","
+    five_ride=five_ride.replace(five_ride,five_ride[0:len(five_ride)-1])
 
     산업시스템공학과선택필수=list(map(str,df['산업시스템공학과선택필수']))
     산업시스템공학과선택필수학점=0
@@ -738,6 +742,7 @@ def ise_graduate(update,context):
     산시전공=0
     if for_strip_list[0]=='융합소프트웨어':
         del for_strip_list[0]
+        for_strip_list=list(set(for_strip_list))
         for i in for_strip_list:
             if i in 산업시스템공학과선택필수:
                 산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
@@ -758,11 +763,11 @@ def ise_graduate(update,context):
             if i in 융합소프트웨어전공선택:
                 융합소프트웨어전공선택학점+=int(df[['융합소프트웨어전공선택학점']].iloc[융합소프트웨어전공선택.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
-        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'융합소프트웨어전공필수 : '+str(융합소프트웨어전공필수학점)+'/24\n'+'융합소프트웨어전공선택 : '+str(융합소프트웨어전공선택학점)+'/15')
-
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'융합소프트웨어전공 : '+str(융합소프트웨어전공필수학점+융합소프트웨어전공선택학점)+'/36')
 
     elif for_strip_list[0]=='디자인공학':
         del for_strip_list[0]
+        for_strip_list=list(set(for_strip_list))
         for i in for_strip_list:
             if i in 산업시스템공학과선택필수:
                 산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
@@ -783,10 +788,11 @@ def ise_graduate(update,context):
             if i in 융합소프트웨어전공선택:
                 융합소프트웨어전공선택학점+=int(df[['디자인공학전공선택학점']].iloc[디자인공학전공선택.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
-        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'디자인공학전공필수 : '+str(디자인공학전공필수학점)+'/18\n'+'디자인공학전공선택 : '+str(디자인공공학전공선택학점)+'/18')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'디자인공학전공 : '+str(디자인공학전공필수학점+디자인공학전공선택학점)+'/36')
 
     elif for_strip_list[0]=='건설정보소프트웨어':
         del for_strip_list[0]
+        for_strip_list=list(set(for_strip_list))
         for i in for_strip_list:
             if i in 산업시스템공학과선택필수:
                 산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
@@ -807,10 +813,11 @@ def ise_graduate(update,context):
             if i in 융합소프트웨어전공선택:
                 융합소프트웨어전공선택학점+=int(df[['건설정보소프트웨어전공선택학점']].iloc[건설정보소프트웨어전공선택.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
-        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'건설정보소프트웨어전공필수 : '+str(건설정보소프트웨어전공필수학점)+'/18\n'+'건설정보소프트웨어전공선택 : '+str(건설정보소프트웨어전공선택학점)+'/18')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'건설정보소프트웨어전공 : '+str(건설정보소프트웨어전공필수학점+건설정보소프트웨어전공선택학점)+'/36')
 
     elif for_strip_list[0]=='로봇융합소프트웨어':
         del for_strip_list[0]
+        for_strip_list=list(set(for_strip_list))
         for i in for_strip_list:
             if i in 산업시스템공학과선택필수:
                 산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
@@ -831,10 +838,10 @@ def ise_graduate(update,context):
             if i in 융합소프트웨어전공선택:
                 융합소프트웨어전공선택학점+=int(df[['로봇융합소프트웨어전공선택학점']].iloc[로봇융합소프트웨어전공선택.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
-        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'로봇융합소프트웨어전공필수 : '+str(로봇융합소프트웨어전공필수학점)+'/18\n'+'로봇융합소프트웨어전공선택 : '+str(로봇융합소프트웨어전공선택학점)+'/18')
-
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'로봇융합소프트웨어전공 : '+str(로봇융합소프트웨어전공필수학점+로봇융합소프트웨어전공선택학점)+'/36')
     elif for_strip_list[0]=='문화예술소프트웨어':
         del for_strip_list[0]
+        for_strip_list=list(set(for_strip_list))
         for i in for_strip_list:
             if i in 산업시스템공학과선택필수:
                 산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
@@ -855,10 +862,10 @@ def ise_graduate(update,context):
             if i in 융합소프트웨어전공선택:
                 융합소프트웨어전공선택학점+=int(df[['문화예술소프트웨어전공선택학점']].iloc[문화예술소프트웨어전공선택.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
-        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'문화예술소프트웨어전공필수 : '+str(문화예술소프트웨어전공필수학점)+'/18\n'+'문화예술소프트웨어전공선택 : '+str(문화예술소프트웨어전공선택학점)+'/18')
-
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'융합소프트웨어전공 : '+str(문화예술소프트웨어전공필수학점+문화예술소프트웨어전공선택학점)+'/36')
     elif for_strip_list[0]=='범죄수사소프트웨어':
         del for_strip_list[0]
+        for_strip_list=list(set(for_strip_list))
         for i in for_strip_list:
             if i in 산업시스템공학과선택필수:
                 산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
@@ -879,10 +886,10 @@ def ise_graduate(update,context):
             if i in 융합소프트웨어전공선택:
                 융합소프트웨어전공선택학점+=int(df[['범죄수사소프트웨어전공선택학점']].iloc[범죄수사소프트웨어전공선택.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
-        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'범죄수사소프트웨어전공필수 : '+str(범죄수사소프트웨어전공필수학점)+'/18\n'+'범죄수사소프트웨어전공선택 : '+str(범죄수사소프트웨어전공선택학점)+'/18')
-
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'범죄수사소프트웨어전공 : '+str(범죄수사소프트웨어전공필수학점+범죄수사소프트웨어전공선택학점)+'/36')
     elif for_strip_list[0]=='산업정보소프트웨어':
         del for_strip_list[0]
+        for_strip_list=list(set(for_strip_list))
         for i in for_strip_list:
             if i in 산업시스템공학과선택필수:
                 산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
@@ -903,9 +910,10 @@ def ise_graduate(update,context):
             if i in 융합소프트웨어전공선택:
                 융합소프트웨어전공선택학점+=int(df[['산업정보소프트웨어전공선택학점']].iloc[산업정보소프트웨어전공선택.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
-        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'산업정보소프트웨어전공필수 : '+str(산업정보소프트웨어전공필수학점)+'/18\n'+'산업정보소프트웨어전공선택 : '+str(산업정보소프트웨어전공선택학점)+'/18')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16\n'+'융합소프트웨어전공 : '+str(산업정보소프트웨어전공필수학점+산업정보소프트웨어전공선택학점)+'/36')
 
     else:
+        for_strip_list=list(set(for_strip_list))
         for i in for_strip_list:
             if i in 산업시스템공학과선택필수:
                 산업시스템공학과선택필수학점+=int(df[['산업시스템공학과선택필수학점']].iloc[산업시스템공학과선택필수.index(i)])
@@ -922,7 +930,11 @@ def ise_graduate(update,context):
             if i in 산업시스템공학과기초교양:
                 산업시스템공학과기초교양학점+=int(df[['산업시스템공학과기초교양학점']].iloc[산업시스템공학과기초교양.index(i)])
         산시전공=산업시스템공학과전공기초학점+산업시스템공학과전공전문학점
-        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16')
+        context.bot.send_message(chat_id=update.effective_chat.id, text='산업시스템공학과선택필수 : '+str(산업시스템공학과선택필수학점)+'/9\n'+'산업시스템공학과전공필수 : '+str(산업시스템공학과전공필수학점)+'/24\n'+'( 18년도 이전 입학생 : 21학점 )\n'+'산업시스템공학과전공 : '+str(산시전공)+'/36\n'+'산업시스템공학과전공전문 : '+str(산업시스템공학과전공전문학점)+'/18학점 이상\n'+'MSC : '+str(산업시스템공학과MSC학점)+'/30\n'+'기본소양 : '+str(산업시스템공학과기본소양학점)+'/6\n'+'기초교양 : '+str(산업시스템공학과기초교양학점)+'/16')
+    if len(five_ride)!=0:
+        context.bot.send_message(chat_id=update.effective_chat.id, text=five_ride+'(은)는 잘못 입력된 과목 입니다.')
+
+
     essential_list=['공학경제','미적분학및연습1','미적분학및연습2','공학선형대수학']
     for _ in for_strip_list:
         if _ in essential_list:
@@ -933,8 +945,6 @@ def ise_graduate(update,context):
     essential_str=essential_str.replace(essential_str,essential_str[0:len(essential_str)-1])
     if len(essential_list)!=0:
         context.bot.send_message(chat_id=update.effective_chat.id, text='[필수과목] '+essential_str+'을(를) 아직 수강하지 않았습니다!')
-
-
 
 # 명령어  /start 정의 CommandHandler
 start_handler = CommandHandler('start', start )
