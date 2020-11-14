@@ -671,6 +671,7 @@ def ise_graduate(update,context):
         for_strip_list[i]=''.join(for_strip_list[i].split())
     print(for_strip_list)
     df = pd.read_excel('졸업요건_산시.xlsx')
+    #사용자가 오타로 입력한 과목명을 걸러내기
     five_ride=''
     column_data=[]
     column_data_list=[]
@@ -686,9 +687,8 @@ def ise_graduate(update,context):
     for_set=list(set(for_set))
     for i in for_set:
         five_ride+=i+','
-
-
     five_ride=five_ride.replace(five_ride,five_ride[0:len(five_ride)-1])
+
     산업시스템공학과선택필수=list(map(str,df['산업시스템공학과선택필수']))
     산업시스템공학과선택필수학점=0
     산업시스템공학과전공필수=list(map(str,df['산업시스템공학과전공필수']))
@@ -951,8 +951,10 @@ def ise_graduate(update,context):
     for i in essential_list:
         essential_str+=i+','
     essential_str=essential_str.replace(essential_str,essential_str[0:len(essential_str)-1])
+    #산시 필수 과목을 이수하지 않았을시 그 과목 보여주기
     if len(essential_list)!=0:
         context.bot.send_message(chat_id=update.effective_chat.id, text='[필수과목] '+essential_str+'을(를) 아직 수강하지 않았습니다!')
+    #사용자가 오타로 적은 과목 봇이 사용자에게 전송하기
     if len(five_ride)!=0:
         print(five_ride)
         context.bot.send_message(chat_id=update.effective_chat.id, text=five_ride+'(은)는 잘못 입력된 과목 입니다.')
