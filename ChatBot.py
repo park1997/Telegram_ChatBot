@@ -241,7 +241,7 @@ def gunchuk_ballground(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id,
      text = gunchuk_text)
     context.bot.send_message(chat_id=update.effective_chat.id,
-     text = '건축공학과 홈페이지는 -> '+gunchuk_text+' 입니다.')
+     text = '건축공학과 홈페이지는 -> '+gunchuk_url+' 입니다.')
 def mre_ballground(update, context):
     print("mre_ballground")
     mre_url="https://mecha.dongguk.edu/?page_id=207"
@@ -253,7 +253,7 @@ def mre_ballground(update, context):
     for i in mre_info:
         try:
             if type(int(i.get_text())) is int:
-                mre_text+=i.next_sibling.next_sibling.a.get_text()
+                mre_text+=i.next_sibling.next_sibling.a.get_text()+"\n"
         except:
             EOFError
     context.bot.send_message(chat_id=update.effective_chat.id,
