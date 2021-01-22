@@ -1,5 +1,4 @@
 from telegram.ext import Updater, MessageHandler, Filters, CommandHandler, CallbackQueryHandler, ConversationHandler
-from emoji import emojize
 import requests
 from bs4 import BeautifulSoup
 import lxml
