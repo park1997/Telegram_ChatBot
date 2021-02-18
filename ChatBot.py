@@ -37,7 +37,7 @@ def start(update, context):
         InlineKeyboardButton( '건축학과', callback_data='architec' )
         ,InlineKeyboardButton('추가 기능', callback_data="function")
     ]
-     ,[InlineKeyboardButton( '취소', callback_data='cancel' )
+        ,[InlineKeyboardButton( '취소', callback_data='cancel' )
     ]]
 
     reply_markup = InlineKeyboardMarkup( task_buttons )
