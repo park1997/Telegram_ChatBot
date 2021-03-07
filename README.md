@@ -11,3 +11,7 @@ it helps graduate our University efficiency for using this chatbot
 2. 학과를 선택하면 이수체계도 및 졸업기준표 조회, 커리어넷 학과정보, 학과 공지사항, 선 이수과목 조회, 과목정보 조회, 졸업학점 계산기 선택 가능
 
 3. 각 선택지들은 파이썬코드를 통해 알고리즘을 만들었으며, 동국대학교 공과대학 졸업요건을 확인하기위한 수단으로 도움을 줄 수있음.
+
+
+<img width="382" alt="스크린샷 2021-03-07 오후 4 19 33" src="https://user-images.githubusercontent.com/73048180/110232427-e88bdc00-7f60-11eb-8742-edde03de5c79.png">
+
