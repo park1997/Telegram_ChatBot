@@ -14,5 +14,4 @@ it helps graduate our University efficiency for using this chatbot
 
 
 <img width="382" alt="스크린샷 2021-03-07 오후 4 19 33" src="https://user-images.githubusercontent.com/73048180/110232427-e88bdc00-7f60-11eb-8742-edde03de5c79.png">
-
-스크린샷 2021-03-09 오후 4.21.43![image](https://user-images.githubusercontent.com/73048180/110433332-a6df6a80-80f3-11eb-9e5f-b17c1a101114.png)
+![image](https://user-images.githubusercontent.com/73048180/110433332-a6df6a80-80f3-11eb-9e5f-b17c1a101114.png)
