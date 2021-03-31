@@ -23,13 +23,17 @@ Service
  ### 커리어넷 학과정보 
   자신의 학과정보가 세세하기 모여있는 커리어넷의 링크가 제공된다.
  ### 학과 공지사항 
-  각 학과 홈페이지의 학과 공지사항을 크롤링하여 제공된다.<img width="359" alt="스크린샷 2021-03-31 오후 3 35 36" src="https://user-images.githubusercontent.com/73048180/113100730-beaf9780-9236-11eb-951f-86671f8443ca.png">
+  각 학과 홈페이지의 학과 공지사항을 크롤링하여 제공된다.
+  <img width="359" alt="스크린샷 2021-03-31 오후 3 35 36" src="https://user-images.githubusercontent.com/73048180/113100730-beaf9780-9236-11eb-951f-86671f8443ca.png">
  ### 선 이수 과목 조회 
-  과목명을 입력하면 그 과목에 해당하는 선이수 과목이 출력된다.<img width="365" alt="스크린샷 2021-03-31 오후 3 40 10" src="https://user-images.githubusercontent.com/73048180/113101190-63ca7000-9237-11eb-819a-c4b185001118.png">
+  과목명을 입력하면 그 과목에 해당하는 선이수 과목이 출력된다.
+  <img width="365" alt="스크린샷 2021-03-31 오후 3 40 10" src="https://user-images.githubusercontent.com/73048180/113101190-63ca7000-9237-11eb-819a-c4b185001118.png">
  ### 과목정보 조회
-  과목명을 입력하면 그 과목에 해당하는 전공구분, 학점이 출력된다. <img width="370" alt="스크린샷 2021-03-31 오후 3 42 13" src="https://user-images.githubusercontent.com/73048180/113101435-ab50fc00-9237-11eb-87f7-9f215eb9e210.png">
+  과목명을 입력하면 그 과목에 해당하는 전공구분, 학점이 출력된다.
+  <img width="370" alt="스크린샷 2021-03-31 오후 3 42 13" src="https://user-images.githubusercontent.com/73048180/113101435-ab50fc00-9237-11eb-87f7-9f215eb9e210.png">
  ### 졸업학점 계산기
-  자신이 들었던 모든과목을 입력한후 전송하게 되면 각 전공구분에 분류되어 어떤 과목을 더 들어야 졸업할 수 있는지 알수있게 출력 된다<img width="380" alt="스크린샷 2021-03-31 오후 3 46 12" src="https://user-images.githubusercontent.com/73048180/113101899-3a5e1400-9238-11eb-91fb-8f11d7e18925.png">
+  자신이 들었던 모든과목을 입력한후 전송하게 되면 각 전공구분에 분류되어 어떤 과목을 더 들어야 졸업할 수 있는지 알수있게 출력 된다
+  <img width="380" alt="스크린샷 2021-03-31 오후 3 46 12" src="https://user-images.githubusercontent.com/73048180/113101899-3a5e1400-9238-11eb-91fb-8f11d7e18925.png">
 .
 
 
