@@ -537,17 +537,17 @@ def ise_graduate_1(update,context):
     print("ise_graduate_1")
 #판다스로 선 이수과목 조회하기
 def mc_the_max(update,context):
-    ise_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/산시선이수.xlsx")
-    cee_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/건설환경공학선이수.xlsx")
-    mre_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/기계공학선이수.xlsx")
-    mme_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/멀티미디어선이수.xlsx")
-    ice_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/정보통신공학선이수.xlsx")
-    cse_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/컴퓨터공학선이수.xlsx")
-    cbe_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/화생공선이수.xlsx")
-    eee_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/전자전기공학선이수.xlsx")
-    gunchuk_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/건축공학선이수.xlsx")
-    architec_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/건축학선이수.xlsx")
-    newmeterial_df = pd.read_excel("D:/Python/Telegram_ChatBot/공대선이수/융에신선이수.xlsx")
+    ise_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/산시선이수.xlsx")
+    cee_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/건설환경공학선이수.xlsx")
+    mre_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/기계공학선이수.xlsx")
+    mme_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/멀티미디어선이수.xlsx")
+    ice_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/정보통신공학선이수.xlsx")
+    cse_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/정보통신공학선이수.xlsx")
+    cbe_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/화생공선이수.xlsx")
+    eee_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/전자전기공학선이수.xlsx")
+    gunchuk_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/건축공학선이수.xlsx")
+    architec_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/건축학선이수.xlsx")
+    newmeterial_df = pd.read_excel("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대선이수/융에신선이수.xlsx")
     df_dic={}
     k=0
     for i in ise_df['후수교과목']:
