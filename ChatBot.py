@@ -123,42 +123,42 @@ def gunchuk_toothwatermap(update, context):
 def mre_toothwatermap(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/기계로봇에너지공학과이수체계도.JPG",'rb'))
     update.message.reply_text("↓일반과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/기계졸업기준표_일반과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/기계졸업기준표_일반과정.JPG",'rb'))
     update.message.reply_text("↓심화과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/기계졸업기준표_심화과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/기계졸업기준표_심화과정.JPG",'rb'))
 def mme_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/멀티미디어공학과이수체계도.jpg','rb'))
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/멀공졸업기준표.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/멀티미디어공학과이수체계도.JPG",'rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/멀공졸업기준표.JPG",'rb'))
 def newmeterial_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/융합에너지신소재공학과이수체계도.jpg','rb'))
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/융신졸업기준표.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/융합에너지신소재공학과이수체계도.JPG",'rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/융신졸업기준표.jpg",'rb'))
 def eee_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/전자전기공학부이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/전자전기공학부이수체계도.JPG",'rb'))
     update.message.reply_text("↓일반과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/전전졸업기준표_일반과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/전전졸업기준표_일반과정.jpg",'rb'))
     update.message.reply_text("↓심화과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/전전졸업기준표_심화과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/전전졸업기준표_심화과정.jpg",'rb'))
 def ice_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/정보통신공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/정보통신공학과이수체계도.jpg",'rb'))
     update.message.reply_text("↓일반과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/정통졸업기준표_일반과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/정통졸업기준표_일반과정.jpg",'rb'))
     update.message.reply_text("↓심화과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/정통졸업기준표_심화과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/정통졸업기준표_심화과정.jpg",'rb'))
 def cse_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/컴퓨터공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/컴퓨터공학과이수체계도.JPG",'rb'))
     update.message.reply_text("↓일반과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/컴공졸업기준표_일반과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/정통졸업기준표_일반과정.jpg",'rb'))
     update.message.reply_text("↓심화과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/컴공졸업기준표_심화과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/컴공졸업기준표_심화과정.jpg",'rb'))
 def cbe_toothwatermap(update, context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/화공생명공학과이수체계도.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/화공생명공학과이수체계도.JPG",'rb'))
     update.message.reply_text("↓일반과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/화공졸업기준표_일반과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/화공졸업기준표_일반과정.JPG",'rb'))
     update.message.reply_text("↓심화과정↓")
-    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open('D:/Python/Telegram_ChatBot/졸업기준표/화공졸업기준표_심화과정.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id ,photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/화공졸업기준표_심화과정.JPG",'rb'))
 def architec_toothwatermap(update,context):
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/건축학과이수체계도.jpg','rb'))
-    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('D:/Python/Telegram_ChatBot/졸업기준표/건축학졸업기준표.jpg','rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/공대 이수체계도/공대 이수체계도/건축학과이수체계도.jpg",'rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("/Users/byeonghyeon/Documents/GitHub/Telegram_ChatBot/졸업기준표/건축학졸업기준표.JPG",'rb'))
 
 #커리어넷 학과정보 링크주기
 def ise_career(update,context):
