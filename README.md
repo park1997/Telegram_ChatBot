@@ -1,14 +1,15 @@
 # Telegram_ChatBot
+Telegram API를 이용한 동국대학교 공과대 학생 대상 졸업 도우미 ChatBot
 
-Introduce
-====
+## Introduce
+
 
   * 동국대학교 창의문제 해결 프로젝트를 통해 개발된 텔레그램 챗봇입니다.
   * Telegram에 접속후 pyr2를 입력하면 챗봇을찾을 수 있다.
   <img width="380" alt="스크린샷 2021-03-31 오후 3 28 45" src="https://user-images.githubusercontent.com/73048180/113100018-ca4e8e80-9235-11eb-8c0b-e4adbc744bc8.png">
 
-Service
-====
+## Service
+
 
  ### 1. /start 명령어와 함께 학과를 선택 할 수 있다.
 <img width="363" alt="스크린샷 2021-03-31 오후 3 31 24" src="https://user-images.githubusercontent.com/73048180/113100280-29140800-9236-11eb-914d-13a58399f9d1.png">
