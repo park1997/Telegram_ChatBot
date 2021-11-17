@@ -7,8 +7,7 @@ import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ChatAction
 import pandas as pd
 
-
-#telegram.ext.Updater : 텔레그램으로부터 업데이트를 받아서 dispatcher로 전달
+# telegram.ext.Updater : 텔레그램으로부터 업데이트를 받아서 dispatcher로 전달
 #CommandHandler: 텔레그램 /start등의 Command
 #MessageHandler: 텍스트 상태 업데이트
 #CallbackQueryHandler: callback 쿼리
